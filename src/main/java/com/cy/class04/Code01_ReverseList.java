@@ -39,6 +39,9 @@ public class Code01_ReverseList {
         return pre;
     }
 
+    /**
+     * 双链表的逆序
+     */
     public static DoubleNode reverseDoubleList(DoubleNode head) {
         DoubleNode pre = null;
         DoubleNode next = null;
