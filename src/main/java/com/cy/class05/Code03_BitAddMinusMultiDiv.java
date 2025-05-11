@@ -86,6 +86,36 @@ public class Code03_BitAddMinusMultiDiv {
         return isNeg(a) ^ isNeg(b) ? negNum(res) : res;
     }
 
+    /**
+     * 如果a和b都为系统最小，a = b，返回1
+     * 如果b是系统最小，a不是，a / b，因为a的绝对值比b小，一除，向下取整，为0
+     * 如果a是系统最小，b不是，将ans = (a + 1) / b，再(a - ans * b) / b 得到结果，再加ans。详细推演过程看草图。
+     * 如果a和b都不是系统最小，直接采用上面写好的div
+     *
+     * 系统最小 ÷ -1，按道理应该是系统最大值+1的，但是这个值没办法表示，越界了。
+     * leetcode约定，这时返回最大值就行了。
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int divide(int a, int b) {
+        if (a == Integer.MIN_VALUE && b == Integer.MIN_VALUE) {
+            return 1;
+        } else if (b == Integer.MIN_VALUE) {
+            return 0;
+        } else if (a == Integer.MIN_VALUE) {
+            if (b == negNum(1)) {
+                return Integer.MAX_VALUE;
+            } else {
+                int ans = div(add(a, 1), b);
+                return add(ans, div(minus(a, multi(ans, b)), b));
+            }
+        } else {
+            return div(a, b);
+        }
+    }
+
     public static void main(String[] args) {
         int a = 7;
         int b = -3;

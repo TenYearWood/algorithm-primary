@@ -12,6 +12,7 @@ public class Util {
         for (int i = 31; i >= 0; i--) {
             System.out.print((num & (1 << i)) == 0 ? "0" : "1");
         }
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -21,5 +22,14 @@ public class Util {
 
         System.out.println(a % b);                      //12
         System.out.println(a & c);                      //12  即 1100
+
+
+        int d = Integer.MIN_VALUE;
+        printBinary(d);
+        System.out.println(a / d);
+
+        int e = Integer.MAX_VALUE;
+        System.out.println(e);
+        System.out.println(e + 1);
     }
 }
